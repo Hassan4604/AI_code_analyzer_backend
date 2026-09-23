@@ -1,7 +1,7 @@
 <?php
 
 namespace App\Http\Controllers;
-
+use Illuminate\Http\Request;
 use App\Applications\Auth\RegisterCase;
 use App\Applications\Auth\LoginCase;
 use App\Http\Requests\RegisterRequest;
@@ -39,5 +39,14 @@ class AuthController extends Controller
             'user' => $result['user'],
             'token' => $result['token']
         ], 200);
+    }
+
+    public function logout(Request $request)
+    {
+       $request->user()->currentAccessToken()->delete();
+
+       return response()->json([
+        'message' => 'Logged out successfully'
+       ]);
     }
 }

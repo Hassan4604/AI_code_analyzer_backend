@@ -1,7 +1,7 @@
 <?php
 
 namespace App\Applications\CodeAnalysis;
-
+use Illuminate\Support\Facades\Http;
 use App\Domain\CodeAnalysesRepository;
 use App\Models\CodeAnalyses;
 use Illuminate\Database\Eloquent\Collection;
@@ -15,6 +15,17 @@ class AnalyzeCodeCase
 
     public function execute(array $data): CodeAnalyses
     {
+        /*
+         * AI analysis will be performed here.
+         *
+         * The AI service will eventually return:
+         * - review
+         * - improvements
+         * - rating
+         *
+         * Then the complete analysis will be saved.
+         */
+
         return $this->codeRepo->create($data);
     }
 

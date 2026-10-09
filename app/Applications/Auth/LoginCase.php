@@ -15,19 +15,20 @@ class LoginCase
     public function verify(array $data)
     {
         $user = $this->userRepository->findByEmail($data['email']);
-        if (!$user) {
+
+        if (!$user || !Hash::check($data['password'], $user->password)) {
             return [
-                'message' => 'User not found',
-                'status' => 404
-            ];
-        }
-        if (!Hash::check($data['password'], $user->password)) {
-            return [
-                'message' => 'Invalid password',
+                'message' => 'Invalid credentials',
                 'status' => 401
             ];
         }
+
         $token = $user->createToken('auth_token')->plainTextToken;
-        return ['user' => $user , 'token' => $token];
+
+        return [
+            'user' => $user,
+            'token' => $token,
+            'status' => 200
+        ];
     }
 }

@@ -2,7 +2,7 @@
 
 namespace App\Http\Controllers;
 
-use App\Applications\CodeAnalysis\AnalyzeCodeCase;
+use App\Applications\CodeAnalyses\AnalyzeCodeCase;
 use App\Http\Requests\CodeAnalysesRequest;
 use Illuminate\Http\Request;
 

@@ -20,7 +20,13 @@ Route::get('/user', function (Request $request) {
 })->middleware('auth:sanctum');
 
 Route::middleware('auth:sanctum')->group(function(){
-    Route::post('analysis' , [CodeAnalysesController::class, 'show'])
+    Route::post('analysis', [CodeAnalysesController::class, 'create'])
         ->name('analysis');
+    Route::get('analysis', [CodeAnalysesController::class, 'index'])
+        ->name('analysis.index');
+    Route::get('analysis/{id}', [CodeAnalysesController::class, 'show'])
+        ->name('analysis.show');
+    Route::delete('analysis/{id}', [CodeAnalysesController::class, 'destroy'])
+        ->name('analysis.destroy');
 });
 
